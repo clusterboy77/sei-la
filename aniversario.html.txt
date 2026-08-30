@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário, Ana Laura! 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa-claro: #ffd9e8;
+    --rosa-medio: #f7a8c4;
+    --rosa-forte: #e8639a;
+    --rosa-escuro: #b13c6c;
+    --vinho: #6e2748;
+    --creme: #fff7fa;
+    --dourado: #e8b95f;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    background: linear-gradient(180deg, var(--creme) 0%, var(--rosa-claro) 40%, var(--rosa-medio) 100%);
+    color: var(--vinho);
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  /* ---------- pétalas caindo ---------- */
+  .petalas{
+    position:fixed; inset:0; pointer-events:none; z-index:2; overflow:hidden;
+  }
+  .petala{
+    position:absolute; top:-10%;
+    font-size: 22px;
+    opacity:.85;
+    animation: cair linear infinite;
+    filter: drop-shadow(0 2px 3px rgba(110,39,72,.15));
+  }
+  @keyframes cair{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg); }
+    100%{ transform: translateY(110vh) translateX(var(--drift,40px)) rotate(360deg); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 40px 20px;
+    z-index:3;
+  }
+
+  .eyebrow{
+    font-size:.85rem;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    color: var(--rosa-escuro);
+    margin-bottom:18px;
+    opacity:0;
+    animation: surgir 1s ease forwards .2s;
+  }
+
+  .nome{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: clamp(2.6rem, 9vw, 5.5rem);
+    color: var(--vinho);
+    line-height:1.05;
+    opacity:0;
+    animation: surgir 1.1s ease forwards .5s;
+  }
+
+  .nome em{ font-style: italic; color: var(--rosa-forte); }
+
+  .idade-wrap{
+    margin-top: 26px;
+    opacity:0;
+    animation: surgir 1s ease forwards 1s;
+  }
+
+  .idade{
+    display:inline-flex; align-items:baseline; gap:10px;
+    font-family:'Playfair Display', serif;
+    background: rgba(255,255,255,.5);
+    border: 1px solid rgba(232,99,154,.35);
+    padding: 10px 30px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
+  .idade .numero{
+    font-size: 2.2rem;
+    font-weight:700;
+    color: var(--rosa-forte);
+  }
+
+  .idade .texto{
+    font-family:'Quicksand', sans-serif;
+    font-size:1rem;
+    color: var(--vinho);
+  }
+
+  .scroll-dica{
+    position:absolute; bottom: 30px;
+    font-size:.8rem; letter-spacing:.2em; text-transform:uppercase;
+    color: var(--rosa-escuro);
+    opacity:0;
+    animation: surgir 1s ease forwards 1.6s, flutuar 2.4s ease-in-out infinite 2.6s;
+  }
+
+  @keyframes surgir{
+    from{ opacity:0; transform: translateY(18px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+  @keyframes flutuar{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(8px); }
+  }
+
+  /* ---------- SEÇÕES ---------- */
+  section{
+    position:relative; z-index:3;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 90px 24px;
+  }
+
+  .titulo-secao{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    text-align:center;
+    color: var(--rosa-escuro);
+    margin-bottom: 40px;
+  }
+
+  /* moldura de foto */
+  .moldura-foto{
+    width: min(340px, 78vw);
+    aspect-ratio: 4/5;
+    margin: 0 auto;
+    border-radius: 18px;
+    background:
+      repeating-linear-gradient(135deg, rgba(232,99,154,.12) 0 12px, rgba(255,255,255,.3) 12px 24px);
+    border: 3px dashed var(--rosa-forte);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    color: var(--rosa-escuro);
+    font-weight:600;
+    padding: 24px;
+    box-shadow: 0 18px 40px -18px rgba(110,39,72,.35);
+    transition: transform .3s ease;
+  }
+  .moldura-foto:hover{ transform: translateY(-4px) rotate(-.5deg); }
+  .moldura-foto .dica{
+    font-size:.85rem;
+    font-weight:500;
+    line-height:1.5;
+    max-width: 220px;
+  }
+  .moldura-foto .icone{
+    font-size:2.4rem;
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .instrucao-foto{
+    text-align:center;
+    font-size:.78rem;
+    color: var(--rosa-escuro);
+    opacity:.7;
+    margin-top: 16px;
+  }
+
+  /* cartão da mensagem */
+  .cartao-mensagem{
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(232,99,154,.3);
+    border-radius: 22px;
+    padding: 44px 34px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 25px 50px -25px rgba(110,39,72,.35);
+    position:relative;
+  }
+  .cartao-mensagem::before{
+    content:"❝";
+    position:absolute; top:-6px; left:24px;
+    font-family:'Playfair Display', serif;
+    font-size:4rem;
+    color: var(--rosa-forte);
+    opacity:.5;
+  }
+  .texto-mensagem{
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    line-height:1.7;
+    color: var(--vinho);
+    text-align:center;
+  }
+  .assinatura{
+    margin-top: 22px;
+    text-align:center;
+    font-size:.9rem;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color: var(--rosa-escuro);
+  }
+
+  /* rodapé com balões simples em CSS */
+  .rodape{
+    position:relative;
+    padding: 70px 24px 120px;
+    text-align:center;
+    z-index:3;
+  }
+  .rodape p{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size: 1.3rem;
+    color: var(--vinho);
+  }
+
+  .baloes{
+    display:flex; justify-content:center; gap: 22px;
+    margin-bottom: 26px;
+  }
+  .balao{
+    width: 34px; height:44px;
+    border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
+    position:relative;
+    animation: flutuar 3.2s ease-in-out infinite;
+  }
+  .balao::after{
+    content:"";
+    position:absolute; bottom:-14px; left:50%;
+    width:2px; height:16px;
+    background: rgba(110,39,72,.4);
+    transform: translateX(-50%);
+  }
+  .b1{ background: var(--rosa-forte); animation-delay:0s; }
+  .b2{ background: var(--dourado); animation-delay:.4s; transform: translateY(6px); }
+  .b3{ background: var(--rosa-medio); animation-delay:.8s; }
+
+  @media (max-width:480px){
+    section{ padding: 70px 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="petalas" id="petalas"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Uma pequena surpresa para</div>
+    <h1 class="nome">Ana Laura<br><em>Ferreira Araújo</em></h1>
+    <div class="idade-wrap">
+      <div class="idade">
+        <span class="numero">17</span>
+        <span class="texto">anos de vida</span>
+      </div>
+    </div>
+    <div class="scroll-dica">role para baixo ↓</div>
+  </section>
+
+  <!-- FOTO -->
+  <section>
+    <h2 class="titulo-secao">um momento pra guardar</h2>
+    <div class="moldura-foto" id="moldura-foto">
+      <div>
+        <span class="icone">🌷</span>
+        <span class="dica">espaço reservado para a foto dela<br>— veja a instrução logo abaixo para trocar</span>
+      </div>
+    </div>
+    <p class="instrucao-foto">para colocar a foto: troque a linha marcada <code>&lt;!-- FOTO AQUI --&gt;</code> no código do arquivo pelo caminho da imagem</p>
+  </section>
+
+  <!-- MENSAGEM -->
+  <section>
+    <h2 class="titulo-secao">uma mensagem para ela</h2>
+    <div class="cartao-mensagem">
+      <p class="texto-mensagem" id="mensagem">
+        <!-- MENSAGEM AQUI -->
+        escreva aqui a frase que você quer deixar pra Ana Laura — pode trocar este texto diretamente no código, no lugar deste comentário.
+      </p>
+      <div class="assinatura">com carinho, para os 17 anos dela</div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <section class="rodape">
+    <div class="baloes">
+      <div class="balao b1"></div>
+      <div class="balao b2"></div>
+      <div class="balao b3"></div>
+    </div>
+    <p>Feliz aniversário, Ana Laura! 🌸</p>
+  </section>
+
+<script>
+  // gera pétalas caindo continuamente
+  const container = document.getElementById('petalas');
+  const emojis = ['🌸','🌺','💗','🌷'];
+  const totalPetalas = 22;
+
+  for (let i = 0; i < totalPetalas; i++) {
+    const p = document.createElement('span');
+    p.className = 'petala';
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const left = Math.random() * 100;
+    const duracao = 8 + Math.random() * 10;
+    const atraso = Math.random() * 12;
+    const drift = (Math.random() * 120 - 60) + 'px';
+    p.style.left = left + 'vw';
+    p.style.fontSize = (14 + Math.random() * 14) + 'px';
+    p.style.setProperty('--drift', drift);
+    p.style.animationDuration = duracao + 's';
+    p.style.animationDelay = atraso + 's';
+    container.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
